@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <!-- 配置扫描controller -->
+    <context:component-scan base-package="com.hhb.jd.web.controller"/>
+
+    <!-- 注解驱动的方式配置处理器映射器和处理器适配器 -->
+
+    <mvc:annotation-driven >
+    </mvc:annotation-driven>
+    <!--配置转换服务-->
+<!--
+    <bean id="converterService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.hhb.converter.DateConverter"/>
+            </set>
+        </property>
+    </bean>
+-->
+
+    <!-- 配置视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 配置视图的公共目录路径 -->
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <!-- 配置视图扩展名称 -->
+        <property name="suffix"  value=".jsp"/>
+    </bean>
+
+    <!--配置异常处理器-->
+    <!--<bean class="com.hhb.exception.SsmExceptionResolver"/>-->
+
+  <!--  <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+
+        &lt;!&ndash; maxUploadSize:配置限制文件上传的大小，以字节为单位。
+ 			 	10m=10*1024*1024
+ 			  &ndash;&gt;
+        <property name="maxUploadSize" value="10485760"></property>
+
+        &lt;!&ndash; maxInMemorySize：配置内存缓冲区大小，以字节为单位：
+            4k=4*1024
+         &ndash;&gt;
+        <property name="maxInMemorySize" value="4096"></property>
+
+        &lt;!&ndash; 配置字符集编码 &ndash;&gt;
+        <property name="defaultEncoding" value="UTF-8"></property>
+
+
+
+    </bean>
+-->
+    <!--配置拦截器-->
+    <!--<mvc:interceptors>
+        <mvc:interceptor>
+            &lt;!&ndash;配置拦截器的url规则
+                1.拦截器单个url: /interceptor.do 只拦截请求 /interceptor.do
+                2.拦截多个 url:/inter/**,拦截以/inter开头的所有请求
+                    /inter/*==> /inter/hello.do
+                    /inter/** ==> /inter/hello.do , /inter/hello/hello.do
+
+
+            &ndash;&gt;
+            <mvc:mapping path="/interceptor.do"/>
+            <bean class="com.hhb.interceptor.FirstInterceptor"/>
+        </mvc:interceptor>
+        &lt;!&ndash;配置登录拦截器&ndash;&gt;
+       <mvc:interceptor>
+            <mvc:mapping path="/queryItem.do"/>
+            <bean class="com.hhb.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
+
+</beans>
