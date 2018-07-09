@@ -11,11 +11,6 @@
 #maven ignore
 target/
 
-#eclipse ignore
-.settings/
-.project
-.classpath
-
 #idea
 .idea
 /idea/
